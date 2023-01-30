@@ -1,0 +1,10 @@
+<h1> Trabajos </h1>
+
+<table>
+{% for trab in trabajos %}
+<tr>
+    <td>{{trab.descripcion}}</td>
+    <td>{{trab.lugar}}</td>
+</tr>
+{% endfor %}
+</table>
