@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from getpass import getpass
-from mysql.connector import connect, Error
+#from mysql.connector import connect, Error
+import sqlite3
 from sqlalchemy import create_engine
 import pandas as pd
 
@@ -42,15 +43,23 @@ for i in range(len(jobs)):
 	objeto ={'descripcion':jobs[i].text,'lugar':''.join(places[i].find_all(recursive=False,text=True)).strip()}
 	df = df.append(objeto,ignore_index = True)
 
+
+con = sqlite3.connect("db.sqlite3")
+df.to_sql('myapp_trabajos', con, if_exists="replace",index=True,index_label='id')
+
+con.close()
+print("ready.")
+
+'''
 try:
 	with connect(
 		host="localhost",
 		#user="root",
 		password="",
 		#database="trabajos",
-		user="admin",
+		user="arturoalmaquinta_admin",
 		#password="gamer001!",
-		dataabase="pruebas",
+		database="pruebas",
 	) as connection:
 		db_data = "mysql+pymysql://"+ connection.user+":gamer001!@127.0.0.1,3306/"+connection.database+"?charset=utf8mb4"
 		engine = create_engine(db_data)
@@ -59,7 +68,7 @@ try:
 
 except Error as e:
 	print(e)
-'''
+
 for j in jobs:
 	print(j.text)
 print("*****************************************************************")
