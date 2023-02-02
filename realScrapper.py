@@ -6,6 +6,7 @@ import sqlite3
 from sqlalchemy import create_engine
 import pandas as pd
 
+print("starting...")
 base_url='https://pe.computrabajo.com'
 # Making a GET request
 #HEADERS = {'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'}
